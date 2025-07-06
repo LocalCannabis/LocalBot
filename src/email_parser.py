@@ -45,5 +45,6 @@ with open(OUTPUT_FILE, "w") as f:
     for sku in sorted(found_skus):
         f.write(f"{sku}\n")
 
-print(f\"✅ Found and saved {len(found_skus)} SKUs to {OUTPUT_FILE}\")
-print(f\"🗓️ Checking messages from: {last_wednesday.date()} to {now.date()}\")
+print(f"✅ Found and saved {len(found_skus)} SKUs to {OUTPUT_FILE}")
+print(f"🗓️ Checking messages from: {last_wednesday.date()} to {now.date()}")
+

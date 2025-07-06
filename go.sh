@@ -1,9 +1,14 @@
 #!/bin/bash
-# Ensure script always runs from project root
 cd "$(dirname "$0")"
+source .venv/bin/activate
 
-# Optional: load virtualenv
-# source venv/bin/activate
+# Pre-flight check
+python3 src/check_dependencies.py
+if [ $? -ne 0 ]; then
+  echo "❌ Dependencies were just installed. Please re-run the script."
+  exit 1
+fi
 
-# Run the email parser
+# Main pipeline
 python3 src/email_parser.py
+python3 src/product_filter.py
