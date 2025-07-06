@@ -1,0 +1,12 @@
+# Ignore Python environment and cache
+.venv/
+__pycache__/
+*.pyc
+
+# Ignore environment config
+.env
+
+# Ignore data and debug files
+data/
+*.csv
+*.html
