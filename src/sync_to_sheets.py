@@ -6,7 +6,7 @@ import json
 # === CONFIGURATION ===
 CREDS_FILE = "creds/localbot-automation-df16ee94ce73.json"
 SHEET_ID = "108Xpz87730dPY23NCXUCkLhnAOYuh1iwXyDy65DAkPg"  # Replace with your actual Sheet ID
-SHEET_NAME = "Sheet1"       # Name of the sheet tab
+SHEET_NAME = "Filtered_Products"       # Name of the sheet tab
 
 # === Load Data (replace with your actual data loading logic) ===
 df = pd.read_csv("filtered_products.csv")
