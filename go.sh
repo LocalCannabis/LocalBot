@@ -12,3 +12,4 @@ fi
 # Main pipeline
 python3 src/email_parser.py
 python3 src/product_filter.py
+python3 src/sync_to_sheets.py

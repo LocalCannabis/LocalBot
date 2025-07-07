@@ -1,30 +1,25 @@
-import pandas as pd
 import gspread
 from gspread_dataframe import set_with_dataframe
-from oauth2client.service_account import ServiceAccountCredentials
+import pandas as pd
+import json
 
-# === CONFIG ===
-SHEET_ID = "1P1TZL510Ng57nIsktQs50s1Sq91L92QYE-SeQLfNiyc"
-TAB_NAME = "Filtered Products"
-CSV_FILE = "filtered_products.csv"
-CREDS_FILE = "credentials.json"
+# === CONFIGURATION ===
+CREDS_FILE = "creds/localbot-automation-df16ee94ce73.json"
+SHEET_ID = "108Xpz87730dPY23NCXUCkLhnAOYuh1iwXyDy65DAkPg"  # Replace with your actual Sheet ID
+SHEET_NAME = "Sheet1"       # Name of the sheet tab
 
-# === AUTH ===
-scope = ["https://spreadsheets.google.com/feeds", "https://www.googleapis.com/auth/drive"]
-creds = ServiceAccountCredentials.from_json_keyfile_name(CREDS_FILE, scope)
-client = gspread.authorize(creds)
+# === Load Data (replace with your actual data loading logic) ===
+df = pd.read_csv("filtered_products.csv")
 
-# === OPEN SHEET ===
-spreadsheet = client.open_by_key(SHEET_ID)
-worksheet = spreadsheet.worksheet(TAB_NAME)
+# === Authenticate with Google Sheets ===
+gc = gspread.service_account(filename=CREDS_FILE)
+sh = gc.open_by_key(SHEET_ID)
+worksheet = sh.worksheet(SHEET_NAME)
 
-# === LOAD & SYNC CSV DATA ===
-df = pd.read_csv(CSV_FILE)
-
-# Clear existing data (optional)
+# === Clear existing content (optional) ===
 worksheet.clear()
 
-# Write new data
-set_with_dataframe(worksheet, df, include_column_header=True)
+# === Send DataFrame to sheet ===
+set_with_dataframe(worksheet, df)
 
-print(f"✅ Synced {len(df)} products to Google Sheet tab: {TAB_NAME}")
+print("✅ Synced data to Google Sheets")
