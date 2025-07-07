@@ -1,0 +1,3 @@
+[submodule "LocalBot"]
+	path = LocalBot
+	url = https://github.com/LocalCannabis/LocalBot.git
