@@ -6,6 +6,9 @@ __pycache__/
 # Ignore environment config
 .env
 
+# Ignore Credentials
+creds/*.json
+
 # Ignore data and debug files
 data/
 *.csv
