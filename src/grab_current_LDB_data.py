@@ -1,5 +1,14 @@
 import requests
 from datetime import datetime, timedelta
+import os
+
+# Ensure the data directory exists
+data_dir = os.path.join(os.path.dirname(__file__), "..", "data")
+os.makedirs(data_dir, exist_ok=True)
+
+# Build output path
+output_path = os.path.join(data_dir, "latest_catalog.csv")
+
 
 def get_last_monday():
     today = datetime.today()
@@ -14,14 +23,13 @@ def download_catalog():
     filename = f"Central_Delivery_Product_Catalog_-en-ca-{date_str}.csv"
     url = f"{base_url}/{filename}"
 
-    # Optional: check if file exists before downloading
     head = requests.head(url)
     if head.status_code == 200:
         print(f"Downloading file for {date_str}...")
         response = requests.get(url)
-        with open("latest_catalog.csv", "wb") as f:
+        with open(output_path, "wb") as f:
             f.write(response.content)
-        print("Download complete.")
+        print(f"Download complete. Saved to {output_path}")
         return True
     else:
         print(f"File not found: {url}")

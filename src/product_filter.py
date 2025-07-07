@@ -34,7 +34,7 @@ def summarize_description(product_name, description):
 
 # === Configuration ===
 SKU_FILE = "skus.txt"
-CSV_FILE = "Central_Delivery_Product_Catalog2.csv"
+CSV_FILE = "data/latest_catalog.csv"
 OUTPUT_FILE = "filtered_products.csv"
 
 COLUMNS_TO_KEEP = [

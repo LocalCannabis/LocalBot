@@ -10,6 +10,7 @@ if [ $? -ne 0 ]; then
 fi
 
 # Main pipeline
+python3 src/grab_current_LDB_data.py
 python3 src/email_parser.py
 python3 src/product_filter.py
 python3 src/sync_to_sheets.py
