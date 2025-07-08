@@ -3,6 +3,7 @@ import subprocess
 import threading
 from functools import wraps
 import os
+from dotenv import load_dotenv
 
 app = Flask(__name__)
 PASSWORD = os.getenv("LOCALBOT_PASSWORD", "fallback")
