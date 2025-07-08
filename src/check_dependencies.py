@@ -3,7 +3,6 @@ import subprocess
 import sys
 import os
 
-
 # === Safety check: is .venv set up and activated? ===
 if not os.path.exists(".venv"):
     print("⚠️  No virtual environment detected in this folder.")
@@ -11,12 +10,15 @@ if not os.path.exists(".venv"):
     print("➡️  Then activate it with `source .venv/bin/activate`")
     sys.exit(1)
 
+
 # Optional: check if current Python interpreter is using the venv
 expected_prefix = os.path.abspath(".venv")
 if expected_prefix not in sys.prefix:
     print("⚠️  You're not using the virtual environment!")
+    print(f"➡️  Current Python: {sys.executable}")
     print("➡️  Run `source .venv/bin/activate` before running this script.")
     sys.exit(1)
+
 
 
 # Module name → pip install name (in case they differ)
